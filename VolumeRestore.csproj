@@ -12,13 +12,17 @@
 	<ApplicationTitle>Volume Restore</ApplicationTitle>
 	<ApplicationId>com.example.volumerestore</ApplicationId>
 	<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-	<ApplicationVersion>2</ApplicationVersion>
+	<ApplicationVersion>3</ApplicationVersion>
 
 	<SupportedOSPlatformVersion>24.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<MauiIcon Include="Resources\AppIcon\appicon.png" />
   </ItemGroup>
 
   <ItemGroup>
