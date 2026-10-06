@@ -2,3 +2,6 @@ release-signing/
 .vs/
 bin/
 obj/
+.copilot/
+**/.copilot/
+**/copilot-instructions.md

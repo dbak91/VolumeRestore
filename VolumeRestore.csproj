@@ -25,10 +25,6 @@
 	<MauiIcon Include="Resources\AppIcon\appicon.png" />
   </ItemGroup>
 
-  <ItemGroup>
-	<None Include=".github\copilot-instructions.md" />
-  </ItemGroup>
-
   <Import Project="release-signing\VolumeRestore.signing.props"
 		  Condition="Exists('release-signing\VolumeRestore.signing.props')" />
 
