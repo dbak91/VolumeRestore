@@ -45,10 +45,10 @@
                     <Label Text="Restore Trigger" TextColor="#F2F2F2" FontAttributes="Bold" />
                     <Entry x:Name="RestoreTriggerEntry" Keyboard="Numeric" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
-                    <Label Text="Min Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
+                    <Label Text="Lower Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
                     <Entry x:Name="MinPauseLevelEntry" Keyboard="Numeric" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
-                    <Label Text="Max Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
+                    <Label Text="Higher Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
                     <Entry x:Name="MaxPauseLevelEntry" Keyboard="Numeric" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
                     <Label Text="Pause Duration (minutes)" TextColor="#F2F2F2" FontAttributes="Bold" />

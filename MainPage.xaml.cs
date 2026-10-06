@@ -78,8 +78,8 @@ public partial class MainPage : ContentPage
     {
         if (!TryReadPositiveNumber(RestoreLevelEntry.Text, "Level to restore to", out var restoreLevel)
             || !TryReadPositiveNumber(RestoreTriggerEntry.Text, "Restore Trigger", out var restoreTrigger)
-            || !TryReadPositiveNumber(MinPauseLevelEntry.Text, "Min Pause Level", out var minPauseLevel)
-            || !TryReadPositiveNumber(MaxPauseLevelEntry.Text, "Max Pause Level", out var maxPauseLevel)
+            || !TryReadPositiveNumber(MinPauseLevelEntry.Text, "Lower Pause Level", out var minPauseLevel)
+            || !TryReadPositiveNumber(MaxPauseLevelEntry.Text, "Higher Pause Level", out var maxPauseLevel)
             || !TryReadPositiveNumber(PauseDurationEntry.Text, "Pause Duration", out var pauseDurationMinutes))
         {
             return;
@@ -87,7 +87,7 @@ public partial class MainPage : ContentPage
 
         if (minPauseLevel > maxPauseLevel)
         {
-            ShowError("Min Pause Level cannot be greater than Max Pause Level.");
+            ShowError("Lower Pause Level cannot be greater than Higher Pause Level.");
             return;
         }
 

@@ -10,13 +10,13 @@ With the default volume settings:
 
 - Restore trigger: `6`
 - Restore level: `25`
-- Minimum pause level: `5`
-- Maximum pause level: `7`
+- Lower pause level: `5`
+- Higher pause level: `7`
 - Pause duration: `1 minute`
 
 A direct media-volume change to `6` restores the level to `25`.
 
-The minimum and maximum pause levels are discrete rocker-protection events, not a range. Reaching either `5` or `7` starts or restarts the pause timer. Trigger events are ignored while the pause is active, allowing normal manual volume adjustment with the device buttons.
+The lower and higher pause levels are discrete rocker-protection events, not a range. Reaching either `5` or `7` starts or restarts the pause timer. Trigger events are ignored while the pause is active, allowing normal manual volume adjustment with the device buttons.
 
 ## Monitoring control
 
@@ -37,8 +37,8 @@ The app stores these settings locally with .NET MAUI Preferences:
 
 1. Level to restore to
 2. Restore trigger
-3. Minimum pause level
-4. Maximum pause level
+3. Lower pause level
+4. Higher pause level
 5. Pause duration in minutes
 
 No network connection is used.
