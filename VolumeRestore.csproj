@@ -12,7 +12,7 @@
 	<ApplicationTitle>Volume Restore</ApplicationTitle>
 	<ApplicationId>com.example.volumerestore</ApplicationId>
 	<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-	<ApplicationVersion>3</ApplicationVersion>
+	<ApplicationVersion>4</ApplicationVersion>
 
 	<SupportedOSPlatformVersion>24.0</SupportedOSPlatformVersion>
   </PropertyGroup>
