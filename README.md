@@ -2,6 +2,8 @@
 
 Volume Restore is a small .NET MAUI Android app that watches the media volume (`%VOLM` equivalent) and restores a configured level when a trigger level is reached.
 
+The purpose (and default setting) is to restore Google's auto lowering of detected headphon device from full(25) to low (6). This app when toggled will restore full; volume within ~1second.
+
 The app is designed for a specific volume-state workflow without internet access, accounts, analytics, or cloud services.
 
 ## Behavior
