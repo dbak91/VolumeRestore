@@ -1,0 +1,4 @@
+release-signing/
+.vs/
+bin/
+obj/
