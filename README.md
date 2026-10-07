@@ -24,6 +24,15 @@ A direct media-volume change to `6` restores the level to `25`.
 
 The lower and higher pause levels are discrete rocker-protection events, not a range. Reaching either `5` or `7` starts or restarts the pause timer. Trigger events are ignored while the pause is active, allowing normal manual volume adjustment with the device buttons.
 
+## Sideload installation
+
+1. Copy the signed APK to the Android device.
+2. Open the APK using a File manager app.
+3. If prompted, allow that Files source to install unknown apps.
+4. Install or update Volume Restore.
+5. Open the app and enable Event Monitoring when required.
+
+
 ## Monitoring control
 
 Event monitoring defaults to **off**. The user must enable it with the switch near the top of the app.
@@ -87,14 +96,6 @@ bin\Release\net10.0-android36.0\publish\android-arm64\com.example.volumerestore-
 ```
 
 Release signing is loaded from the local `release-signing` directory. That directory is excluded from Git and must never be committed. Back it up securely because Android updates must be signed with the same key.
-
-## Sideload installation
-
-1. Copy the signed APK to the Android device.
-2. Open the APK using the Files app.
-3. If prompted, allow that Files source to install unknown apps.
-4. Install or update Volume Restore.
-5. Open the app and enable Event Monitoring when required.
 
 ## Privacy
 
