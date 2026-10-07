@@ -5,6 +5,9 @@ public partial class MainPage : ContentPage
     private bool _isLoadingSettings;
     private bool _isKeyboardInsetTracking;
     private bool _shouldTrackKeyboardInset;
+    private double _maxKeyboardSpacerHeight;
+    private bool _hadFocusedEntry;
+    private int _focusTransitionId;
 
     public MainPage()
     {
@@ -127,29 +130,82 @@ public partial class MainPage : ContentPage
 
     private async void OnEntryFocused(object sender, FocusEventArgs e)
     {
+        _focusTransitionId++;
+
+        var keyboardAlreadyVisible = GetKeyboardHeightInDp() > 0;
+        var isFocusSwitchWhileKeyboardOpen = keyboardAlreadyVisible && _hadFocusedEntry;
+
         _shouldTrackKeyboardInset = true;
         StartKeyboardInsetTracking();
+        _hadFocusedEntry = true;
 
-        if (sender is View view)
+        if (!isFocusSwitchWhileKeyboardOpen && sender is View view)
         {
             await Task.Delay(120);
-            await SettingsScrollView.ScrollToAsync(view, ScrollToPosition.MakeVisible, true);
+            await EnsureFocusedViewVisibleAboveKeyboardAsync(view);
         }
     }
 
-    private void OnEntryUnfocused(object sender, FocusEventArgs e)
+    private async Task EnsureFocusedViewVisibleAboveKeyboardAsync(View view)
     {
-        if (RestoreLevelEntry.IsFocused
-            || RestoreTriggerEntry.IsFocused
-            || MinPauseLevelEntry.IsFocused
-            || MaxPauseLevelEntry.IsFocused
-            || PauseDurationEntry.IsFocused)
+        var keyboardHeight = GetKeyboardHeightInDp();
+        var visibleHeight = SettingsScrollView.Height - keyboardHeight - 12;
+        if (visibleHeight <= 0)
+        {
+            return;
+        }
+
+        var fieldTop = GetYRelativeToSettingsLayout(view);
+        var fieldBottom = fieldTop + view.Height;
+        var currentScrollY = SettingsScrollView.ScrollY;
+        var visibleBottom = currentScrollY + visibleHeight;
+
+        if (fieldBottom <= visibleBottom)
+        {
+            return;
+        }
+
+        var targetScrollY = Math.Max(0, fieldBottom - visibleHeight);
+        await SettingsScrollView.ScrollToAsync(0, targetScrollY, false);
+    }
+
+    private double GetYRelativeToSettingsLayout(View view)
+    {
+        double y = view.Y;
+        Element? parent = view.Parent;
+
+        while (parent is VisualElement visualParent && !ReferenceEquals(visualParent, SettingsLayout))
+        {
+            y += visualParent.Y;
+            parent = visualParent.Parent;
+        }
+
+        return y;
+    }
+
+    private async void OnEntryUnfocused(object sender, FocusEventArgs e)
+    {
+        var transitionId = ++_focusTransitionId;
+        await Task.Delay(120);
+
+        if (transitionId != _focusTransitionId || IsAnyEntryFocused())
         {
             return;
         }
 
         _shouldTrackKeyboardInset = false;
+        _maxKeyboardSpacerHeight = 0;
+        _hadFocusedEntry = false;
         KeyboardSpacer.HeightRequest = 0;
+    }
+
+    private bool IsAnyEntryFocused()
+    {
+        return RestoreLevelEntry.IsFocused
+            || RestoreTriggerEntry.IsFocused
+            || MinPauseLevelEntry.IsFocused
+            || MaxPauseLevelEntry.IsFocused
+            || PauseDurationEntry.IsFocused;
     }
 
     private async void StartKeyboardInsetTracking()
@@ -168,9 +224,14 @@ public partial class MainPage : ContentPage
                 var keyboardHeight = GetKeyboardHeightInDp();
                 var spacerHeight = keyboardHeight > 0 ? keyboardHeight + 16 : 0;
 
-                if (Math.Abs(KeyboardSpacer.HeightRequest - spacerHeight) > 0.5)
+                if (spacerHeight > _maxKeyboardSpacerHeight)
                 {
-                    KeyboardSpacer.HeightRequest = spacerHeight;
+                    _maxKeyboardSpacerHeight = spacerHeight;
+                }
+
+                if (_maxKeyboardSpacerHeight > 0 && Math.Abs(KeyboardSpacer.HeightRequest - _maxKeyboardSpacerHeight) > 0.5)
+                {
+                    KeyboardSpacer.HeightRequest = _maxKeyboardSpacerHeight;
                 }
 
                 await Task.Delay(50);
