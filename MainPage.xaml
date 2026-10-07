@@ -5,8 +5,8 @@
              Title="Volume Restore"
              BackgroundColor="#121212">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="14">
+    <ScrollView x:Name="SettingsScrollView">
+        <VerticalStackLayout x:Name="SettingsLayout" Padding="20" Spacing="14">
             <Label Text="Volume Restore Settings"
                    FontSize="26"
                    FontAttributes="Bold"
@@ -40,19 +40,19 @@
             <Border BackgroundColor="#1E1E1E" Stroke="#3D8BFD" StrokeThickness="1" Padding="16">
                 <VerticalStackLayout Spacing="12">
                     <Label Text="Level to restore to" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="RestoreLevelEntry" Keyboard="Numeric" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    <Entry x:Name="RestoreLevelEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
                     <Label Text="Restore Trigger" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="RestoreTriggerEntry" Keyboard="Numeric" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    <Entry x:Name="RestoreTriggerEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
                     <Label Text="Lower Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="MinPauseLevelEntry" Keyboard="Numeric" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    <Entry x:Name="MinPauseLevelEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
                     <Label Text="Higher Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="MaxPauseLevelEntry" Keyboard="Numeric" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    <Entry x:Name="MaxPauseLevelEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
                     <Label Text="Pause Duration (minutes)" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="PauseDurationEntry" Keyboard="Numeric" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    <Entry x:Name="PauseDurationEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
                 </VerticalStackLayout>
             </Border>
 
@@ -72,6 +72,10 @@
                    Text=""
                    FontSize="13"
                    TextColor="#A5D6A7" />
+
+            <BoxView x:Name="KeyboardSpacer"
+                     HeightRequest="0"
+                     Opacity="0" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -3,6 +3,8 @@ namespace VolumeRestore;
 public partial class MainPage : ContentPage
 {
     private bool _isLoadingSettings;
+    private bool _isKeyboardInsetTracking;
+    private bool _shouldTrackKeyboardInset;
 
     public MainPage()
     {
@@ -121,6 +123,89 @@ public partial class MainPage : ContentPage
 
         ShowError($"{fieldName} must be a whole number of zero or greater.");
         return false;
+    }
+
+    private async void OnEntryFocused(object sender, FocusEventArgs e)
+    {
+        _shouldTrackKeyboardInset = true;
+        StartKeyboardInsetTracking();
+
+        if (sender is View view)
+        {
+            await Task.Delay(120);
+            await SettingsScrollView.ScrollToAsync(view, ScrollToPosition.MakeVisible, true);
+        }
+    }
+
+    private void OnEntryUnfocused(object sender, FocusEventArgs e)
+    {
+        if (RestoreLevelEntry.IsFocused
+            || RestoreTriggerEntry.IsFocused
+            || MinPauseLevelEntry.IsFocused
+            || MaxPauseLevelEntry.IsFocused
+            || PauseDurationEntry.IsFocused)
+        {
+            return;
+        }
+
+        _shouldTrackKeyboardInset = false;
+        KeyboardSpacer.HeightRequest = 0;
+    }
+
+    private async void StartKeyboardInsetTracking()
+    {
+        if (_isKeyboardInsetTracking)
+        {
+            return;
+        }
+
+        _isKeyboardInsetTracking = true;
+
+        try
+        {
+            while (_shouldTrackKeyboardInset)
+            {
+                var keyboardHeight = GetKeyboardHeightInDp();
+                var spacerHeight = keyboardHeight > 0 ? keyboardHeight + 16 : 0;
+
+                if (Math.Abs(KeyboardSpacer.HeightRequest - spacerHeight) > 0.5)
+                {
+                    KeyboardSpacer.HeightRequest = spacerHeight;
+                }
+
+                await Task.Delay(50);
+            }
+        }
+        finally
+        {
+            _isKeyboardInsetTracking = false;
+        }
+    }
+
+    private static double GetKeyboardHeightInDp()
+    {
+#if ANDROID
+        var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+        if (activity?.Window?.DecorView?.RootView is null)
+        {
+            return 0;
+        }
+
+        var rootView = activity.Window.DecorView.RootView;
+        var visibleFrame = new Android.Graphics.Rect();
+        rootView.GetWindowVisibleDisplayFrame(visibleFrame);
+
+        var keyboardHeightPx = rootView.Height - visibleFrame.Height();
+        if (keyboardHeightPx <= 0)
+        {
+            return 0;
+        }
+
+        var density = DeviceDisplay.MainDisplayInfo.Density;
+        return density > 0 ? keyboardHeightPx / density : 0;
+#else
+        return 0;
+#endif
     }
 
     private void ShowError(string message)
