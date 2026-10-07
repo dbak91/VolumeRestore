@@ -5,3 +5,4 @@ obj/
 .copilot/
 **/.copilot/
 **/copilot-instructions.md
+/artifacts/android-arm64
