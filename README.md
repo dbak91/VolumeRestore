@@ -6,6 +6,8 @@ The purpose (and default setting) is to restore Google's auto lowering of detect
 
 The app is designed for a specific volume-state workflow without internet access, accounts, analytics, or cloud services.
 
+<img width="323" height="671" alt="image" src="https://github.com/user-attachments/assets/953b6aa3-e274-484f-ab9a-33d8f031ef10" />
+
 NOTE: 100% 'vibe' coded.
 
 ## Behavior
