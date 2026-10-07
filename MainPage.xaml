@@ -39,8 +39,11 @@
 
             <Border BackgroundColor="#1E1E1E" Stroke="#3D8BFD" StrokeThickness="1" Padding="16">
                 <VerticalStackLayout Spacing="12">
-                    <Label Text="Level to restore to" TextColor="#F2F2F2" FontAttributes="Bold" />
+                    <Label Text="Level to restore to (25 = 100%, >25 = 100% + X)" TextColor="#F2F2F2" FontAttributes="Bold" />
                     <Entry x:Name="RestoreLevelEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    <Label Text="Values above 25 require device support for boosted media volume."
+                           FontSize="12"
+                           TextColor="#CFCFCF" />
 
                     <Label Text="Restore Trigger" TextColor="#F2F2F2" FontAttributes="Bold" />
                     <Entry x:Name="RestoreTriggerEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />

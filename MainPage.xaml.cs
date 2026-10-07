@@ -103,6 +103,13 @@ public partial class MainPage : ContentPage
             maxPauseLevel,
             pauseDurationMinutes));
 
+        if (restoreLevel > VolumeRestoreSettings.DefaultRestoreLevel)
+        {
+            StatusLabel.TextColor = Color.FromArgb("#FFE082");
+            StatusLabel.Text = "Settings saved. Restore level above 25 requires boosted volume support on this device.";
+            return;
+        }
+
         StatusLabel.TextColor = Color.FromArgb("#A5D6A7");
         StatusLabel.Text = "Settings saved on this device.";
     }
