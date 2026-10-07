@@ -50,6 +50,14 @@ public partial class MainPage : ContentPage
         UpdateMonitoringStatus();
     }
 
+    private void OnAdvancedSettingsToggleClicked(object sender, EventArgs e)
+    {
+        AdvancedSettingsSection.IsVisible = !AdvancedSettingsSection.IsVisible;
+        AdvancedSettingsToggleButton.Text = AdvancedSettingsSection.IsVisible
+            ? "Hide Advanced Settings"
+            : "Show Advanced Settings";
+    }
+
     private void OnMonitoringRunningStateChanged(bool isRunning)
     {
         Dispatcher.Dispatch(UpdateMonitoringStatus);

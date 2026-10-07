@@ -45,17 +45,25 @@
                            FontSize="12"
                            TextColor="#CFCFCF" />
 
-                    <Label Text="Restore Trigger" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="RestoreTriggerEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    <Button x:Name="AdvancedSettingsToggleButton"
+                            Text="Show Advanced Settings"
+                            Clicked="OnAdvancedSettingsToggleClicked"
+                            BackgroundColor="#455A64"
+                            TextColor="White" />
 
-                    <Label Text="Lower Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="MinPauseLevelEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    <VerticalStackLayout x:Name="AdvancedSettingsSection" IsVisible="False" Spacing="12">
+                        <Label Text="Restore Trigger" TextColor="#F2F2F2" FontAttributes="Bold" />
+                        <Entry x:Name="RestoreTriggerEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
-                    <Label Text="Higher Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="MaxPauseLevelEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                        <Label Text="Lower Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
+                        <Entry x:Name="MinPauseLevelEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
 
-                    <Label Text="Pause Duration (minutes)" TextColor="#F2F2F2" FontAttributes="Bold" />
-                    <Entry x:Name="PauseDurationEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                        <Label Text="Higher Pause Level" TextColor="#F2F2F2" FontAttributes="Bold" />
+                        <Entry x:Name="MaxPauseLevelEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+
+                        <Label Text="Pause Duration (minutes)" TextColor="#F2F2F2" FontAttributes="Bold" />
+                        <Entry x:Name="PauseDurationEntry" Keyboard="Numeric" Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" TextColor="#FFFFFF" BackgroundColor="#2C2C2C" />
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </Border>
 
