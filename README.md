@@ -15,7 +15,7 @@ NOTE: 100% 'vibe' coded.
 With the default volume settings:
 
 - Restore trigger: `6`
-- Restore level: `25`
+- Restore level: `25` Note this corresponds to full 100% volume
 - Lower pause level: `5`
 - Higher pause level: `7`
 - Pause duration: `1 minute`
