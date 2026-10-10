@@ -15,6 +15,7 @@ internal static class VolumeRestoreSettings
     internal const int DefaultMaxPauseLevel = 7;
     internal const int DefaultPauseDurationMinutes = 1;
     internal const bool DefaultMonitoringEnabled = false;
+    internal const bool DefaultBootPersistenceEnabled = false;
 
     private const string RestoreLevelKey = "RestoreLevel";
     private const string RestoreTriggerKey = "RestoreTrigger";
@@ -22,12 +23,19 @@ internal static class VolumeRestoreSettings
     private const string MaxPauseLevelKey = "MaxPauseLevel";
     private const string PauseDurationMinutesKey = "PauseDurationMinutes";
     private const string MonitoringEnabledKey = "MonitoringEnabled";
+    private const string BootPersistenceEnabledKey = "BootPersistenceEnabled";
     private const string MonitoringRecoveryAppliedKey = "MonitoringRecoveryAppliedV2";
 
     internal static bool MonitoringEnabled
     {
         get => Preferences.Get(MonitoringEnabledKey, DefaultMonitoringEnabled);
         set => Preferences.Set(MonitoringEnabledKey, value);
+    }
+
+    internal static bool BootPersistenceEnabled
+    {
+        get => Preferences.Get(BootPersistenceEnabledKey, DefaultBootPersistenceEnabled);
+        set => Preferences.Set(BootPersistenceEnabledKey, value);
     }
 
     internal static void ApplyMonitoringRecovery()
@@ -66,5 +74,6 @@ internal static class VolumeRestoreSettings
             DefaultMaxPauseLevel,
             DefaultPauseDurationMinutes));
         MonitoringEnabled = DefaultMonitoringEnabled;
+        BootPersistenceEnabled = DefaultBootPersistenceEnabled;
     }
 }
