@@ -46,6 +46,36 @@ internal static class VolumeMonitorController
         ApplyEnabledState();
     }
 
+    internal static void RestartIfRunning()
+    {
+        if (!IsRunning)
+        {
+            return;
+        }
+
+        try
+        {
+            var context = Android.App.Application.Context;
+            var intent = new Intent(context, typeof(VolumeMonitorService));
+
+            context.StopService(intent);
+            SetRunning(false);
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                context.StartForegroundService(intent);
+            }
+            else
+            {
+                context.StartService(intent);
+            }
+        }
+        catch (Exception exception)
+        {
+            SetFailure(exception.Message);
+        }
+    }
+
     internal static void SetRunning(bool isRunning)
     {
         if (isRunning)

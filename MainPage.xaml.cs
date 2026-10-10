@@ -30,6 +30,7 @@ public partial class MainPage : ContentPage
         var settings = VolumeRestoreSettings.Load();
 
         MonitoringSwitch.IsToggled = VolumeRestoreSettings.MonitoringEnabled;
+        BootPersistenceSwitch.IsToggled = VolumeRestoreSettings.BootPersistenceEnabled;
         RestoreLevelEntry.Text = settings.RestoreLevel.ToString();
         RestoreTriggerEntry.Text = settings.RestoreTrigger.ToString();
         MinPauseLevelEntry.Text = settings.MinPauseLevel.ToString();
@@ -48,6 +49,16 @@ public partial class MainPage : ContentPage
 
         VolumeMonitorController.SetEnabled(e.Value);
         UpdateMonitoringStatus();
+    }
+
+    private void OnBootPersistenceToggled(object sender, ToggledEventArgs e)
+    {
+        if (_isLoadingSettings)
+        {
+            return;
+        }
+
+        VolumeRestoreSettings.BootPersistenceEnabled = e.Value;
     }
 
     private void OnAdvancedSettingsToggleClicked(object sender, EventArgs e)
@@ -110,6 +121,8 @@ public partial class MainPage : ContentPage
             minPauseLevel,
             maxPauseLevel,
             pauseDurationMinutes));
+
+        VolumeMonitorController.RestartIfRunning();
 
         if (restoreLevel > VolumeRestoreSettings.DefaultRestoreLevel)
         {

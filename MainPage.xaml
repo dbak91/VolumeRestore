@@ -37,6 +37,21 @@
                 </Grid>
             </Border>
 
+            <Border BackgroundColor="#1E1E1E" Stroke="#455A64" StrokeThickness="1" Padding="16">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                    <Label Text="Boot persistence"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#F2F2F2"
+                           VerticalOptions="Center" />
+                    <Switch x:Name="BootPersistenceSwitch"
+                            Grid.Column="1"
+                            Toggled="OnBootPersistenceToggled"
+                            OnColor="#2E7D32"
+                            VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
             <Border BackgroundColor="#1E1E1E" Stroke="#3D8BFD" StrokeThickness="1" Padding="16">
                 <VerticalStackLayout Spacing="12">
                     <Label Text="Level to restore to (25 = 100%, >25 = 100% + X)" TextColor="#F2F2F2" FontAttributes="Bold" />
