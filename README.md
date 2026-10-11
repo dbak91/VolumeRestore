@@ -6,7 +6,7 @@ The purpose (and default setting) is to restore Google's auto lowering of detect
 
 The app is designed for a specific volume-state workflow without internet access, accounts, analytics, or cloud services.
 
-![V3.0 image](screen3.png)
+![V3.0 image](sceeen3.png)
 
 NOTE: 100% 'vibe' coded.
 
